@@ -1,0 +1,2 @@
+importScripts('/vendor/geotiff.js');
+self.onmessage=async e=>{try{const {rgba,width,height,bounds}=e.data;const rgb=new Uint8Array(width*height*3);for(let i=0,j=0;i<rgba.length;i+=4){rgb[j++]=rgba[i];rgb[j++]=rgba[i+1];rgb[j++]=rgba[i+2]}const data=await GeoTIFF.writeArrayBuffer(rgb,{width,height,GTModelTypeGeoKey:1,GTRasterTypeGeoKey:1,ProjectedCSTypeGeoKey:3857,ModelPixelScale:[(bounds[2]-bounds[0])/width,(bounds[3]-bounds[1])/height,0],ModelTiepoint:[0,0,0,bounds[0],bounds[3],0]});self.postMessage({data},[data]);}catch(e){self.postMessage({error:e.message})}};

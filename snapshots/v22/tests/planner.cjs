@@ -1,0 +1,5 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');const context=vm.createContext({crypto:require('crypto').webcrypto,console});vm.runInContext(fs.readFileSync('public/planner.js','utf8')+'\n'+fs.readFileSync('public/explore.js','utf8').match(/function km\(a,b\)\{[^\n]+/)[0],context);vm.runInContext(`
+const t=makeTrack('A & B',[{mode:'import',coordinates:[[-68,48,10],[-68.01,48,20]]},{mode:'direct',coordinates:[[-67,48],[-67.01,48]]}]);
+const d=profileData(t);if(d.up!==10||d.down!==0||d.points.length!==4||d.covered/d.distance<.49||d.covered/d.distance>.51)throw Error('Gaps or coverage incorrect');if(d.distance>2)throw Error('Disconnected segments joined');
+const t2=makeTrack('Second',[{mode:'import',coordinates:[[-68,48,5],[-68,48.01,1]]}]);const xml=gpx(tracks);if((xml.match(/<trk>/g)||[]).length!==2||!xml.includes('A &amp; B')||(xml.match(/<trkseg>/g)||[]).length!==3)throw Error('Multi track export');if(validCoords([[NaN,48],[-68,48]]))throw Error('Invalid coordinates accepted');
+`,context);console.log('PASS: independent tracks, elevation gaps, disconnected segments, multitrack GPX, invalid coordinates');

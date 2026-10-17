@@ -1,0 +1,2 @@
+export const dynamic='force-dynamic';
+export default async function Home({searchParams}:{searchParams:Promise<{trace?:string}>}){const p=await searchParams;const trace=typeof p.trace==='string'&&/^[0-9a-f-]{36}$/.test(p.trace)?'?v=0.22&trace='+p.trace:'?v=0.22';return <iframe src={'/explore.html'+trace} title="Carte interactive Mission Explore" style={{position:'fixed',inset:0,width:'100%',height:'100%',border:0}} allow="geolocation; fullscreen"/>}
