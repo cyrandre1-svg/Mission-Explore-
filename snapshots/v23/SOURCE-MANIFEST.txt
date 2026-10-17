@@ -1,0 +1,4 @@
+Mission Explore v23 — Sites source b5d1b1df8c3bd0ad21b1c41fb07f878be4f9fb19
+Snapshot of application source and tests, based on snapshots/v22 plus all v23 changes.
+PARTIAL BACKUP: large public/data, other public/vendor assets, vendor and binary files are not included. Full source remains in Sites. Not a database backup.
+All included changed blobs verified against local Git object SHA-1. Previous snapshots preserved.
